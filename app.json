@@ -4,7 +4,7 @@
     "pages/classify/classify",
     "pages/search/search",
     "pages/ranking/ranking",
-    "pages/community/community",
+    "pages/community/community"
   ],
   "window": {
     "backgroundColor": "#f2f2f2",
