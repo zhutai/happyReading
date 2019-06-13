@@ -1,0 +1,53 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/classify/classify",
+    "pages/search/search",
+    "pages/ranking/ranking",
+    "pages/community/community",
+  ],
+  "window": {
+    "backgroundColor": "#f2f2f2",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#8a8a8a",
+    "selectedColor": "#f49917",
+    "list": [
+      { 
+        "iconPath": "./static/image/icon-bookshelf.png",
+        "selectedIconPath": "./static/image/icon-bookshelf-select.png",
+        "pagePath": "pages/index/index",
+        "text": "书架"
+      },
+      {
+        "iconPath": "./static/image/icon-class.png",
+        "selectedIconPath": "./static/image/icon-class-select.png",
+        "pagePath": "pages/index/index",
+        "text": "分类"
+      },
+      {
+        "iconPath": "./static/image/icon-search.png",
+        "selectedIconPath": "./static/image/icon-search-select.png",
+        "pagePath": "pages/index/index",
+        "text": "搜索"
+      },
+      {
+        "iconPath": "./static/image/icon-ranking.png",
+        "selectedIconPath": "./static/image/icon-ranking-select.png",
+        "pagePath": "pages/index/index",
+        "text": "排行榜"
+      },
+      {
+        "iconPath": "./static/image/icon-community.png",
+        "selectedIconPath": "./static/image/icon-community-select.png",
+        "pagePath": "pages/index/index",
+        "text": "论坛"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}
