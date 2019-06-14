@@ -26,25 +26,25 @@
       {
         "iconPath": "./static/image/icon-class.png",
         "selectedIconPath": "./static/image/icon-class-select.png",
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/classify/classify",
         "text": "分类"
       },
       {
         "iconPath": "./static/image/icon-search.png",
         "selectedIconPath": "./static/image/icon-search-select.png",
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/search/search",
         "text": "搜索"
       },
       {
         "iconPath": "./static/image/icon-ranking.png",
         "selectedIconPath": "./static/image/icon-ranking-select.png",
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/ranking/ranking",
         "text": "排行榜"
       },
       {
         "iconPath": "./static/image/icon-community.png",
         "selectedIconPath": "./static/image/icon-community-select.png",
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/community/community",
         "text": "论坛"
       }
     ]

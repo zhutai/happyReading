@@ -32,13 +32,13 @@ Page({
       // 所以此处加入 callback 以防止这种情况
       app.userInfoReadyCallback = res => {
         console.log(api)
-        api._get('/ranking/gender').then(data => {
-          console.log(data)
-        })
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
+        // api._get('/ranking/gender').then(data => {
+        //   console.log(data)
+        // })
+        // this.setData({
+        //   userInfo: res.userInfo,
+        //   hasUserInfo: true
+        // })
       }
     } else {
       // 在没有 open-type=getUserInfo 版本的兼容处理

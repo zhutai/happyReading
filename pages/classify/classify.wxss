@@ -1,8 +1,62 @@
-.log-list {
-  display: flex;
-  flex-direction: column;
-  padding: 40rpx;
+
+#classify {
+  padding: 0 20rpx;
 }
-.log-item {
-  margin: 10rpx;
+
+.placeholder {
+  color: #aaa;
+  height: 72rpx;
+  line-height: 72rpx;
+  font-size: 28rpx;
+  text-align: center;
+  border-bottom: 4rpx solid #fff;
+}
+
+.acitve {
+  color: #f49917;
+  border-color: #f49917;
+}
+
+.class-list {
+  padding: 20rpx 0;
+}
+
+.class-float {
+  float: left;
+  width: 50%;
+  height: 200rpx;
+  padding: 10rpx;
+  box-sizing: border-box;
+}
+
+.class-item {
+  width: 100%;
+  height: 100%;
+  padding: 30rpx;
+  display: flex;
+  box-sizing: border-box;
+  background-color: #f8f7f5;
+}
+
+.class-item:active {
+  background-color: #fff0ed;
+}
+
+.item-text {
+  flex: 1;
+}
+
+.item-image {
+  flex-basis: 40%;
+}
+
+.text-min {
+  color: #ccc;
+  font-size: 24rpx;
+  text-align: center;
+}
+
+.text-middle {
+  color: #333;
+  font-size: 32rpx;
 }

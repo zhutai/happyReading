@@ -1,7 +1,24 @@
 /**app.wxss**/
-
-page {
+@import 'static/css/weui.wxss';
+/* page {
   height:100%;
+} */
+
+.clearFix {
+  zoom: 1;
+}
+.clearFix:after {
+  content: "";
+  clear: both;
+  height: 0;
+  display: block;
+}
+.image {
+  width: 100%;
+  height: 100%;
+}
+.block {
+  display: block;
 }
 
 .container {
