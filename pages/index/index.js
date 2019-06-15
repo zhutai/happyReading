@@ -53,6 +53,14 @@ Page({
       })
     }
   },
+  onPullDownRefresh () {
+    wx.showNavigationBarLoading()
+    setTimeout(function () {
+      // complete
+      wx.hideNavigationBarLoading() //完成停止加载
+      wx.stopPullDownRefresh() //停止下拉刷新
+    }, 1500);
+  },
   getUserInfo: function(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo

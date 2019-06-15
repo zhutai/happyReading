@@ -16,11 +16,11 @@
         <view class="rank-title"><text class='text-min'>{{ rank.name }}</text></view>
         <view class="weui-cells weui-cells_after-title">
           <block wx:for="{{ rank.list }}" wx:for-item="item" wx:key="item._id">
-            <view class="weui-cell" data-params="{{ item }}" bindtap="jumpList">
+            <view class="weui-cell active" data-params="{{ item }}" bindtap="jumpList">
               <view class="weui-cell__hd">
                 <image class="icon-image"  src="{{ imageUrl + item.cover }}"></image>
               </view>
-              <view class="weui-cell__bd text-small">{{ item.title }}</view>
+              <view class="weui-cell__bd text-small view-height"><text>{{ item.title }}</text></view>
             </view>
           </block>
         </view>

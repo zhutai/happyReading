@@ -17,9 +17,13 @@
 }
 
 .icon-image {
-  width:40rpx;
-  height: 40rpx;
+  width:48rpx;
+  height: 48rpx;
   margin-right: 20rpx;
   vertical-align: middle;
 }
 
+.view-height {
+  height:60rpx;
+  line-height:60rpx;
+}

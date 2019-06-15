@@ -1,9 +1,14 @@
 
 #classify {
+  height: 100%;
   padding: 0 20rpx;
 }
 
-.class-list {
+.scrollview {
+  height: calc(100% - 80rpx)
+}
+
+.classlist {
   padding: 20rpx 0;
 }
 
@@ -24,9 +29,9 @@
   background-color: #f8f7f5;
 }
 
-.class-item:active {
+/* .class-item:active {
   background-color: #fff0ed;
-}
+} */
 
 .item-text {
   flex: 1;

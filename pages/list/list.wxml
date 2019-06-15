@@ -10,10 +10,14 @@
       </view>
     </block>
   </view>
-  <scroll-view scroll-y class="booklist" bindscrolltolower="scrollBottom" :wx-if="loading">
-    <view class="weui-cells weui-cells_after-title">
+  <scroll-view :wx-if="loading" class="booklist" 
+  scroll-y="true"
+  scroll-top="{{ scrollTop }}"
+  enable-back-to-top="{{ true }}"
+  bindscrolltolower="scrollBottom"  >
+    <view class="weui-cells weui-cells_after-title" wx:if="{{ bookList.length }}">
       <block wx:for="{{ bookList }}" wx:for-item="item" wx:key="item._id">
-        <view class="weui-cell" data-params="{{ item }}" bindtap="jumpList">
+        <view class="weui-cell active" data-params="{{ item }}" bindtap="jumpList">
           <view class="weui-cell__hd">
             <image class="icon-image" lazy-load src="{{ imageUrl + item.cover }}"></image>
           </view>
@@ -25,6 +29,13 @@
           </view>
         </view>
       </block>
+    </view>
+    <view class="weui-loadmore weui-loadmore_line" wx:elif="{{ !bookList.length && loading }}">
+      <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
+    </view>
+    <view class="weui-loadmore" hidden="{{ !isHideLoadMore }}">
+      <view class="weui-loading"></view>
+      <view class="weui-loadmore__tips">正在加载中</view>
     </view>
   </scroll-view>
 </view>

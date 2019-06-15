@@ -18,11 +18,14 @@ Page({
   data: {
     isTabbar: false,
     loading: false,
+    isLoading: false,
+    isHideLoadMore: false,
     tabArray: [],
     page: {
       start: 0,
       limit: 20
     },
+    scrollTop: 0,
     params: {},
     bookList: [],
     imageUrl: app.globalData.imageUrl
@@ -65,6 +68,9 @@ Page({
       title: "数据加载中",
       mask: true,
       success: () => {
+        wx.setNavigationBarTitle({
+          title: this.data.params.major
+        })
         this.getBooks()
       }
     })
@@ -76,11 +82,9 @@ Page({
     let params = { type: current.value, start, limit, major, gender }
     api._get('/book/by-categories', params).then(res => {
       if (res.ok) {
-        wx.setNavigationBarTitle({
-          title: major
-        })
+        let isLoading = res.total > this.data.page.limit
         let bookList = isMerge ? this.data.bookList.concat(res.books)  : res.books
-        this.setData({ bookList: bookList, loading: true })
+        this.setData({ bookList: bookList, isHideLoadMore: false, loading: true, isLoading })
       }
     })
   },
@@ -94,7 +98,7 @@ Page({
         this.switchClick(type, value)
       }
     })
-    this.setData({ tabArray })
+    this.setData({ tabArray, scrollTop: 0 })
   },
   switchClick(type, value) {
     this.setData({page: { start: 0, limit: 20 }})
@@ -107,16 +111,13 @@ Page({
       this.queryTypeTab(major, gender)
     }
   },
-  scrolltolower () {
-    console.log(123)
-  },
   scrollBottom () {
-    wx.hideLoading()
-    let { start, limit } = this.data.page
-    this.setData({ page: { start: start += 20, limit: limit += 20 } })
-    this.getBooks(true)
-  },
-  onReachBottom(event) {
-    console.log(event)
+    if (!this.data.isLoading) return false
+    let current = this.data.tabArray.find(item => item.active)
+    if (current.type === "classify") {
+      let { start, limit } = this.data.page
+      this.setData({ page: { start: start += 20, limit: limit += 20 }, isHideLoadMore: true })
+      this.getBooks(true)
+    }
   }
 })

@@ -10,21 +10,23 @@
       </view>
     </block>
   </view>
-  <view class="clearFix class-list" :wx-if="loading">
-    <block wx:for="{{ currentList }}" wx:for-item="item" wx:key="item.bookCount">
-      <view class="class-float">
-        <view class="class-item" data-name="{{ item.name }}" bindtap="jumpList">
-          <view class='item-text'>
-            <view><text class='text-middle'>{{ item.name }}</text></view>
-            <view><text class='text-min'>共{{ item.bookCount }}本</text></view>
-          </view>
-          <view class='item-image'>
-            <image class='image' lazy-load="true"
-            mode="aspectFit" 
-            src="{{ imageUrl + item.bookCover[0] }}" ></image>
+  <scroll-view scroll-y="true" class="scrollview" :wx-if="loading">
+    <view class="clearFix classlist">
+      <block wx:for="{{ currentList }}" wx:for-item="item" wx:key="item.bookCount">
+        <view class="class-float">
+          <view class="class-item active" data-name="{{ item.name }}" bindtap="jumpList">
+            <view class='item-text'>
+              <view><text class='text-middle'>{{ item.name }}</text></view>
+              <view><text class='text-min'>共{{ item.bookCount }}本</text></view>
+            </view>
+            <view class='item-image'>
+              <image class='image' lazy-load="true"
+              mode="aspectFit" 
+              src="{{ imageUrl + item.bookCover[0] }}" ></image>
+            </view>
           </view>
         </view>
-      </view>
-    </block>
-  </view>
+      </block>
+    </view>
+  </scroll-view>
 </view>

@@ -67,6 +67,10 @@ page {
   line-height: 40rpx;
 }
 
+.active:active {
+  background-color: #e4e4e4;
+}
+
 .nowrap {
   display:-webkit-box;
   -webkit-line-clamp:1;
