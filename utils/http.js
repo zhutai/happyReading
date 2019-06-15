@@ -1,9 +1,9 @@
 const baseUrl = 'http://api.zhuishushenqi.com';
 
 const http = ({ url = '', param = {}, ...other } = {}) => {
-  wx.showLoading({
-    title: '请求中，请耐心等待..'
-  });
+  // wx.showLoading({
+  //   title: '请求中，请耐心等待..'
+  // });
   let timeStart = Date.now();
   return new Promise((resolve, reject) => {
     wx.request({

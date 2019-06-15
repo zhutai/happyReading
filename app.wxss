@@ -4,6 +4,9 @@
   height:100%;
 } */
 
+page {
+  height: 100%;
+}
 .clearFix {
   zoom: 1;
 }
@@ -20,6 +23,18 @@
 .block {
   display: block;
 }
+.tab-item {
+  color: #aaa;
+  height: 72rpx;
+  line-height: 72rpx;
+  font-size: 28rpx;
+  text-align: center;
+  border-bottom: 4rpx solid #fff;
+}
+.tab-item-selected {
+  color: #f49917;
+  border-color: #f49917;
+}
 
 .container {
   height: 100%;
@@ -31,3 +46,32 @@
   padding: 200rpx 0;
   box-sizing: border-box;
 } 
+
+.text-min {
+  color: #aaa;
+  font-size: 24rpx;
+}
+
+.text-small {
+  color: #333;
+  font-size: 28rpx;
+}
+
+.text-middle {
+  color: #333;
+  font-size: 32rpx;
+}
+
+.row-small {
+  height: 40rpx;
+  line-height: 40rpx;
+}
+
+.nowrap {
+  display:-webkit-box;
+  -webkit-line-clamp:1;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  -webkit-box-orient:vertical;
+  word-break:break-all;
+}

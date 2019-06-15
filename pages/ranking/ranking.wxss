@@ -1,0 +1,25 @@
+
+#rank {
+  height: 100%;
+  padding: 0 20rpx;
+}
+
+.rank-list {
+  height: calc(100% - 80rpx)
+}
+
+.rank-item:last-child {
+  padding-bottom: 30rpx;
+}
+
+.rank-title {
+   padding-top: 20rpx;
+}
+
+.icon-image {
+  width:40rpx;
+  height: 40rpx;
+  margin-right: 20rpx;
+  vertical-align: middle;
+}
+

@@ -1,0 +1,30 @@
+<!--logs.wxml-->
+<view id="booklist">
+  <view class="weui-flex" hidden="{{ isTabbar }}">
+    <block wx:for="{{ tabArray }}" wx:for-item="tab" wx:key="tab.value">
+      <view class="weui-flex__item">
+        <view class="{{ tab.active ? 'tab-item tab-item-selected' : 'tab-item'}}" 
+        data-value="{{ tab.value }}" data-type="{{ tab.type }}" bindtap="tabToggle">
+          {{ tab.label }}
+        </view>
+      </view>
+    </block>
+  </view>
+  <scroll-view scroll-y class="booklist" bindscrolltolower="scrollBottom" :wx-if="loading">
+    <view class="weui-cells weui-cells_after-title">
+      <block wx:for="{{ bookList }}" wx:for-item="item" wx:key="item._id">
+        <view class="weui-cell" data-params="{{ item }}" bindtap="jumpList">
+          <view class="weui-cell__hd">
+            <image class="icon-image" lazy-load src="{{ imageUrl + item.cover }}"></image>
+          </view>
+          <view class="weui-cell__bd weui-margin">
+            <view class='text-middle'>{{ item.title }}</view>
+            <view class="text-min row-small nowrap">{{ item.author + "  |  " + item.majorCate }}</view>
+            <view class="text-min row-small nowrap">{{ item.shortIntro }}</view>
+            <view class="text-min row-small nowrap">{{ item.latelyFollower + " 人在追 | " + item.retentionRatio + "% 读者留存"}}</view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+</view>

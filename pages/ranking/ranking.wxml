@@ -1,0 +1,30 @@
+<!--logs.wxml-->
+<view id="rank">
+  <view class="weui-flex">
+    <block wx:for="{{ tabArray }}" wx:for-item="tab" wx:key="tab.value">
+      <view class="weui-flex__item">
+        <view class="{{ tab.active ? 'tab-item tab-item-selected' : 'tab-item'}}" 
+        data-value="{{ tab.value }}" bindtap="tabToggle">
+          {{ tab.label }}
+        </view>
+      </view>
+    </block>
+  </view>
+  <scroll-view scroll-y class="rank-list" :wx-if="loading">
+    <block wx:for="{{currentList}}" wx:for-item="rank" wx:key="rank.index">
+      <view class='rank-item'>
+        <view class="rank-title"><text class='text-min'>{{ rank.name }}</text></view>
+        <view class="weui-cells weui-cells_after-title">
+          <block wx:for="{{ rank.list }}" wx:for-item="item" wx:key="item._id">
+            <view class="weui-cell" data-params="{{ item }}" bindtap="jumpList">
+              <view class="weui-cell__hd">
+                <image class="icon-image"  src="{{ imageUrl + item.cover }}"></image>
+              </view>
+              <view class="weui-cell__bd text-small">{{ item.title }}</view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+</view>

@@ -34,6 +34,7 @@ App({
   },
   globalData: {
     userInfo: null,
+    enterList: null,
     imageUrl: "http://statics.zhuishushenqi.com"
   },
   // openToast: function () {
