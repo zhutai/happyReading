@@ -23,6 +23,14 @@ page {
 .block {
   display: block;
 }
+.flex {
+  display: flex;
+}
+icon {
+  display: inline-block;
+  margin-right: 20rpx;
+}
+
 .tab-item {
   color: #aaa;
   height: 72rpx;
