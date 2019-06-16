@@ -2,10 +2,9 @@
 App({
   onLaunch: function () {
     // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-
+    // var logs = wx.getStorageSync('logs') || []
+    // logs.unshift(Date.now())
+    // wx.setStorageSync('logs', logs)
     // 登录
     wx.login({
       success: res => {
@@ -37,18 +36,4 @@ App({
     enterList: null,
     imageUrl: "http://statics.zhuishushenqi.com"
   },
-  // openToast: function () {
-  //   wx.showToast({
-  //     title: '已完成',
-  //     icon: 'success',
-  //     duration: 3000
-  //   });
-  // },
-  // openLoading: function () {
-  //   wx.showToast({
-  //     title: '数据加载中',
-  //     icon: 'loading',
-  //     duration: 3000
-  //   });
-  // }
 })
