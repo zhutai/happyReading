@@ -15,9 +15,9 @@
 .weui-search-bar__label {
   background-color:  #EFEFEF;
 }
-.weui-search-bar__text {
+/* .weui-search-bar__text {
   vertical-align:inherit;
-}
+} */
 .weui-search-bar__cancel-btn {
   color: #0366d6;
 }
@@ -40,8 +40,46 @@
   font-size: 30rpx;
 }
 
-.text-right icon {
-  font-size: inherit;
+.text-right .iconfont {
+  font-weight: 500;
+  padding-right: 10rpx;
+}
+
+/* .text-right .icon-refresh {
+  transform:rotate(0deg);
+} */
+
+.text-right .rotate{
+  color:#f49917;
+  /* transform:rotate(360deg);
+  transition:transform .5s; */
+  animation-name: myrotate; /*动画的名称 */
+  animation-duration: 1000ms; /*动画从开始到结束的时间*/
+  animation-timing-function: linear; /*动画执行快慢的参数*/
+  animation-iteration-count: myrotate; /*动画执行多少次的参数*//*以下是兼容ios所需，参数意义与上相同*/
+  -webkit-animation-name: myrotate;
+  -webkit-animation-duration: 1000ms;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: myrotate;
+}
+
+@keyframes myrotate {
+  /*开始转的角度*/
+  from {
+    transform: rotate(0deg);
+  }/*结束的角度*/
+  to {
+    transform: rotate(360deg);
+  }
+}
+/*兼容ios*/
+@-webkit-keyframes myrotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .hot-list {
@@ -66,6 +104,6 @@
   border-bottom:1rpx solid #ccc;
 }
 
-.history-item:first-child{
+/* .history-item:first-child{
   border-top: 1px solid #ccc;
-}
+} */

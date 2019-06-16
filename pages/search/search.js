@@ -3,18 +3,12 @@ const util = require('../../utils/util.js')
 const api = require('../../utils/http.js')
 const app = getApp()
 
-// const historyList = [
-//   { name: "斗罗大陆" },
-//   { name: "灭世魔帝" },
-//   { name: "飞剑问道" },
-//   { name: "阳神" },
-// ]
-
 Page({
   data: {
     inputShowed: false,
     inputVal: "",
-    isContent: false,
+    isSearch: false,
+    isRefresh: false,
     loading: false,
     searchList: [],
     searchHotWords: [],
@@ -26,20 +20,45 @@ Page({
       title: "数据加载中",
       mask: true
     })
-    api._get('/book/search-hotwords').then(res => {
-      if (res.ok) {
-        let searchHotWords = res.searchHotWords.splice(0, 12)
-        searchHotWords.forEach(item => {
-          item.color = util.randomColor()
-        })
-        let historyList = util.getStorage("searchHistroy")
-        this.setData({ searchHotWords, loading: true, historyList })
-      }
-    })
+    this.getHotTag()
   },
   onShow() {
     let historyList = util.getStorage("searchHistroy")
     this.setData({ inputVal: "", historyList, inputShowed: false })
+  },
+  getHotTag() {
+    this.setData({ isRefresh: true } )
+    api._get('/book/search-hotwords').then(res => {
+      if (res.ok) {
+        let searchHotWords = []
+        for (let i = 0; i < 12; i++) {
+          let index = util.randomNum(0, res.searchHotWords.length)
+          searchHotWords.push(res.searchHotWords[index])
+        }
+        searchHotWords.forEach(item => {
+          item.color = util.randomColor()
+        })
+        let historyList = util.getStorage("searchHistroy")
+        this.setData({ searchHotWords, loading: true, historyList, isRefresh: false })
+      }
+    })
+  },
+  clearHistroy () {
+    wx.showModal({
+      title: '提示',
+      content: '确定删除搜索历史？',
+      confirmText: "确定",
+      cancelText: "取消",
+      success: (res) => {
+        console.log(res);
+        if (res.confirm) {
+          let historyList = util.setStorage("searchHistroy", [])
+          this.setData({ historyList: [] })
+        } else {
+          console.log('用户取消了')
+        }
+      }
+    });
   },
   showInput: function () {
     this.setData({
@@ -76,13 +95,14 @@ Page({
   inputTyping: function (e) {
     let { value, cursor } = e.detail
     this.setData({
-      inputVal: value
+      inputVal: value,
+      isSearch: false
     });
     if (cursor !== this.data.cursor) {
       this.setData({ cursor })
       api._get("/book/auto-complete", { query: value }).then(res => {
         if (res.ok) {
-          this.setData({ cursor, searchList: res.keywords })
+          this.setData({ cursor, searchList: res.keywords, isSearch: true })
         }
       })
     }
