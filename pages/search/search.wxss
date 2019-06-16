@@ -57,3 +57,15 @@
   color:#fff;
   font-size:30rpx;
 }
+
+.history-item {
+  color: #7E7E7E;
+  height:80rpx;
+  line-height:80rpx;
+  font-size:30rpx;
+  border-bottom:1rpx solid #ccc;
+}
+
+.history-item:first-child{
+  border-top: 1px solid #ccc;
+}

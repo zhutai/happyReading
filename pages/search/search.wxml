@@ -5,7 +5,7 @@
         <view class="weui-search-bar__box">
           <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
           <input type="text" class="weui-search-bar__input" placeholder="搜索书名或作者名" 
-          value="{{inputVal}}"
+          value="{{inputVal || '' }}"
           focus="{{inputShowed}}"
           bindinput="inputTyping" />
           <view class="weui-icon-clear" 
@@ -26,33 +26,44 @@
       bindtap="hideInput">取消
       </view>
     </view>
-    <view class="result-list">
-      <view class="weui-cells searchbar-result" wx:if="{{inputVal.length > 0}}">
-        <navigator url="" class="weui-cell" hover-class="weui-cell_active">
-          <view class="weui-cell__bd">
-            <view>实时搜索文本</view>
+    <view class="result-list" wx:if="{{inputVal.length}}">
+      <view class="weui-cells searchbar-result">
+        <block wx:for="{{ searchList }}" wx:for-item="item" wx:key="item">
+          <view class="weui-cell" hover-class="weui-cell_active"
+          data-name="{{ item }}" bindtap="searchMain">
+            <view class="weui-cell__bd">{{ item }}</view>
           </view>
-        </navigator>
-        <navigator url="" class="weui-cell" hover-class="weui-cell_active">
-          <view class="weui-cell__bd">
-            <view>实时搜索文本</view>
-          </view>
-        </navigator>
+        </block>
       </view>
     </view>
-    <view class="content">
+    <view class="content" hidden="{{inputVal}}">
       <view class="hot-search">
         <view class="line-plus flex">
           <view class="text-left">大家都在搜</view>
-          <view class="text-right"><icon type="search" size="12"></icon>换一批</view>
+          <view class="text-right">
+            <icon type="search" size="12"></icon>换一批
+          </view>
         </view>
         <view class="hot-list clearFix">
           <block wx:for="{{ searchHotWords }}" wx:for-item="item" wx:key="item.times">
-            <text style="background: rgb{{ item.color }}" class="tag">{{ item.word }}                   </text>
+            <text style="background: rgb{{ item.color }}"
+            class="tag" data-name="{{ item.word }}" 
+            bindtap="searchMain">{{ item.word }}</text>
           </block>
         </view>
       </view>
       <view class="search-history">
+        <view class="line-plus flex">
+          <view class="text-left">搜索历史</view>
+          <view class="text-right"><icon type="search" size="12"></icon>清空</view>
+        </view>
+        <view class="history-list" wx:if="{{ historyList.length }}">
+          <block wx:for="{{ historyList }}" wx:for-item="item" wx:key="item">
+            <view class="history-item" data-name="{{ item.name }}" >
+              <text>{{ item.name }}</text>
+            </view>
+          </block>
+        </view>
       </view>
     </view>
   </view>

@@ -31,14 +31,19 @@ Page({
     imageUrl: app.globalData.imageUrl
   },
   onLoad: function (option) {
-    let { id, major, gender } = option
+    let { id, major, gender, query } = option
     if (id) {
-      this.isTabbar = false
       tabRankArray.forEach((item, index) => {
         item.active = !index
       })
       this.setData({ tabArray: tabRankArray })
       this.queryRankTab(id)
+    } else if(query){
+      this.isTabbar = true
+      wx.setNavigationBarTitle({
+        title: `搜索 "${query}"`
+      })
+      this.querySearch(query)
     } else {
       tabTypeArray.forEach((item, index) => {
         item.active = !index
@@ -46,6 +51,23 @@ Page({
       this.setData({ tabArray: tabTypeArray, params: { major, gender } })
       this.queryTypeTab(major, gender)
     }
+  },
+  querySearch(name) {
+    wx.showLoading({
+      title: "数据加载中",
+      mask: true,
+      success: () => {
+        api._get("/book/fuzzy-search", { query: name }).then(res => {
+          if (res.ok) {
+            const books = res.books
+            books.forEach(item => {
+              item.majorCate = item.cat
+            })
+            this.setData({ bookList: books, loading: true })
+          }
+        })
+      }
+    })
   },
   queryRankTab (id) {
     wx.showLoading({
