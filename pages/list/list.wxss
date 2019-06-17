@@ -1,4 +1,7 @@
 /* example/list/list.wxss */
+page {
+  height: 100%;
+}
 
 #booklist {
   height: 100%;

@@ -17,7 +17,7 @@
   bindscrolltolower="scrollBottom"  >
     <view class="weui-cells weui-cells_after-title" wx:if="{{ bookList.length }}">
       <block wx:for="{{ bookList }}" wx:for-item="item" wx:key="item._id">
-        <view class="weui-cell active" data-params="{{ item }}" bindtap="jumpList">
+        <navigator class="weui-cell active" url="/pages/bookInfo/bookInfo?id={{ item._id }}">
           <view class="weui-cell__hd">
             <image class="icon-image" lazy-load src="{{ imageUrl + item.cover }}"></image>
           </view>
@@ -27,7 +27,7 @@
             <view class="text-min row-small nowrap">{{ item.shortIntro }}</view>
             <view class="text-min row-small nowrap">{{ item.latelyFollower + " 人在追 | " + item.retentionRatio + "% 读者留存"}}</view>
           </view>
-        </view>
+        </navigator>
       </block>
     </view>
     <view class="weui-loadmore weui-loadmore_line" wx:elif="{{ !bookList.length && loading }}">

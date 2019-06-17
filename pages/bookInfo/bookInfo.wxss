@@ -1,0 +1,79 @@
+.weui-media-box__hd_in-appmsg {
+  width:120rpx;
+  height:150rpx;
+  line-height:120rpx;
+}
+
+.weui-media-box__desc {
+  height:50rpx;
+  line-height:50rpx;
+}
+
+.header {
+  border-bottom: 16rpx solid #eee;
+}
+
+.button-inline {
+  padding: 0rpx 30rpx;
+  padding-bottom: 40rpx;
+}
+
+.button-inline .weui-btn {
+  margin-top: 0px;
+  padding:6rpx 100rpx;
+}
+
+.content {
+  padding: 20rpx 30rpx;
+  border-bottom: 16rpx solid #eee;
+}
+
+.text-list {
+  color:#888;
+  font-size:28rpx;
+  padding:10rpx 0;
+  border-bottom:1px solid #ddd;
+}
+
+.synopsis {
+  margin: 20rpx 0;
+}
+
+.footer {
+  padding: 0 30rpx;
+}
+
+.line-plus {
+  line-height: 80rpx;
+}
+
+.text-left {
+  flex:1;
+  color: #333;
+  font-size:32rpx;
+}
+
+.text-right {
+  color: #ccc;
+  font-size: 30rpx;
+}
+
+.weui-grid {
+  width: 25%;
+  padding: 0;
+  border: 0;
+  padding-bottom: 20rpx;
+}
+
+.weui-flex-image {
+  width:120rpx;
+  height:150rpx;
+  margin:0 auto;
+}
+
+.image-font {
+  font-size:24rpx;
+  color:#666;
+  height:50rpx;
+  line-height:50rpx;
+}

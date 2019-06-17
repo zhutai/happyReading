@@ -34,6 +34,7 @@ App({
   globalData: {
     userInfo: null,
     enterList: null,
+    similarList: [],
     imageUrl: "http://statics.zhuishushenqi.com"
   },
 })

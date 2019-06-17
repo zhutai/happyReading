@@ -1,0 +1,63 @@
+<!--logs.wxml-->
+<view id="bookInfo" wx:if="{{bookInfo}}">
+  <view class="header">
+    <view class="weui-media-box weui-media-box_appmsg">
+      <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+        <image class="weui-media-box__thumb" src="{{ imageUrl + bookInfo.cover }}" />
+      </view>
+      <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+        <view class="weui-media-box__title">{{ bookInfo.title }}</view>
+        <view class="weui-media-box__desc">
+          <text>{{ bookInfo.author }} |  </text>
+          <text>{{ bookInfo.minorCate || bookInfo.cat  }} |  </text>
+          <text>{{ bookInfo.transWordCount }}字</text>
+        </view>
+        <view class="weui-media-box__desc nowrap">
+          <text>{{ bookInfo.isSerial ? bookInfo.formatPassTime + '更新' : '完结' }}</text>
+          <text> | {{ bookInfo.lastChapter }}</text>
+        </view>
+      </view>
+    </view>
+    <view class="button-inline clearFix">
+      <button style="float: left;" class="weui-btn mini-btn" 
+      type="default" size="mini" bindtap="addBookshelf">加入书架</button>
+      <button style="float: right;" class="weui-btn mini-btn" 
+      type="primary" size="mini" bindtap="startReading">开始阅读</button>
+    </view>
+  </view>
+  <view class="content">
+    <view class="weui-flex text-list text-alige">
+      <view class="weui-flex__item">
+        <view class="placeholder">追书人数</view>
+        <view class="placeholder">{{ bookInfo.latelyFollower }}</view>
+      </view>
+      <view class="weui-flex__item">
+        <view class="placeholder">读者留存率</view>
+        <view class="placeholder">{{ bookInfo.retentionRatio }}%</view>
+      </view>
+      <view class="weui-flex__item">
+        <view class="placeholder">更新字数</view>
+        <view class="placeholder">{{ bookInfo.serializeWordCount }}</view>
+      </view>
+    </view>
+    <view class="synopsis text-small {{ isHide ? '' : 'nowrap-big' }}">
+      <text bindtap="previewAll">{{ bookInfo.longIntro }}</text>
+    </view>
+  </view>
+  <view class="footer">
+    <view class="line-plus flex">
+      <view class="text-left">你可能感兴趣</view>
+      <view class="text-right text-active" bindtap="clearHistroy">更多</view>
+    </view>
+    <view class="text-alige">
+      <block wx:for="{{ similarList }}" wx:for-item="item" wx:key="item._id">
+        <navigator url="/pages/bookInfo/bookInfo?id={{ item._id || bookInfo._id }}" class="weui-grid">
+          <view class="weui-flex-image">
+            <image class="image" src="{{ item.title ? imageUrl + item.cover : item.cover }}"></image>
+          </view>
+          <view class="image-font nowrap">{{ item.title || '' }}</view>
+        </navigator>
+      </block>
+    </view>
+  </view>
+</view>

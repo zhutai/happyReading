@@ -5,6 +5,7 @@
     "pages/search/search",
     "pages/ranking/ranking",
     "pages/community/community",
+    "pages/bookInfo/bookInfo",
     "pages/list/list"
   ],
   "window": {

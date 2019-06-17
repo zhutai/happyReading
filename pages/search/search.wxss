@@ -26,13 +26,13 @@
   padding: 20rpx 40rpx;
 }
 .line-plus {
-  line-height: 100rpx;
+  line-height: 80rpx;
 }
 
 .text-left {
   flex:1;
   color: #333;
-  font-size:38rpx;
+  font-size:32rpx;
 }
 
 .text-right {
