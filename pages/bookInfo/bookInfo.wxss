@@ -77,3 +77,8 @@
   height:50rpx;
   line-height:50rpx;
 }
+
+button.disabled {
+  color:rgba(0, 0, 0, 0.6);
+  background-color:#DEDEDE;
+}

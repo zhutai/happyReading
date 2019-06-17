@@ -13,6 +13,7 @@ const tabTypeArray = [
   { type: 'classify', label: '好评', value: 'reputation', active: false },
   { type: 'classify', label: '完结', value: 'over', active: false }
 ]
+const baseUrl = 'http://novel.juhe.im';
 // tag [东方玄幻、异界大陆、异界争霸、远古神话]
 Page({
   data: {
@@ -31,26 +32,58 @@ Page({
     imageUrl: app.globalData.imageUrl
   },
   onLoad: function (option) {
-    let { id, major, gender, query } = option
+    let { id, major, gender, query, author, type } = option
+    // 根据排行榜查询
     if (id) {
       tabRankArray.forEach((item, index) => {
         item.active = !index
       })
       this.setData({ tabArray: tabRankArray })
       this.queryRankTab(id)
+    // 根据搜索查询
     } else if(query){
       this.isTabbar = true
       wx.setNavigationBarTitle({
         title: `搜索 "${query}"`
       })
       this.querySearch(query)
-    } else {
+    } else if (major && gender){
       tabTypeArray.forEach((item, index) => {
         item.active = !index
       })
       this.setData({ tabArray: tabTypeArray, params: { major, gender } })
       this.queryTypeTab(major, gender)
+    } else if (author) {
+      this.isTabbar = true
+      wx.setNavigationBarTitle({
+        title: `查询作者 "${author}"的书`
+      })
+      this.queryAuthorBooks(author)
+    } else {
+      this.isTabbar = true;
+      wx.setNavigationBarTitle({
+        title: "你可能感兴趣"
+      })
+      this.querySimilarList()
     }
+  },
+  querySimilarList() {
+    let { similarList } = app.globalData;
+    this.setData({ bookList: similarList })
+  },
+  queryAuthorBooks(author) {
+    wx.showLoading({
+      title: "数据加载中",
+      mask: true,
+      success: () => {
+        api._get(`${baseUrl}/author-books`, { author }).then(res => {
+          if (res.ok) {
+            const books = res.books
+            this.setData({ bookList: books, loading: true })
+          }
+        })
+      }
+    })
   },
   querySearch(name) {
     wx.showLoading({

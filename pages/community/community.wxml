@@ -1,0 +1,11 @@
+<view id="community">
+  <view class="develop">
+    <image class="image user-select" src="/static/image/develop.png"> </image>
+    <view class="text-alige">
+      <text class="text-middle" style="color:#bbb;">功能正在开发中~~~</text>
+    </view>
+    <view class="text-alige">
+      <text class="text-middle" style="color:#bbb;">敬请期待</text>
+    </view>
+  </view>
+</view>

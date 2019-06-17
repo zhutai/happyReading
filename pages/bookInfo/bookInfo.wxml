@@ -8,8 +8,9 @@
       <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
         <view class="weui-media-box__title">{{ bookInfo.title }}</view>
         <view class="weui-media-box__desc">
-          <text>{{ bookInfo.author }} |  </text>
-          <text>{{ bookInfo.minorCate || bookInfo.cat  }} |  </text>
+          <navigator url="/pages/list/list?author={{ bookInfo.author }}" 
+          style="display: inline-block;color: red;">{{ bookInfo.author }}</navigator>
+          <text> | {{ bookInfo.minorCate || bookInfo.cat  }} | </text>
           <text>{{ bookInfo.transWordCount }}字</text>
         </view>
         <view class="weui-media-box__desc nowrap">
@@ -19,8 +20,10 @@
       </view>
     </view>
     <view class="button-inline clearFix">
-      <button style="float: left;" class="weui-btn mini-btn" 
-      type="default" size="mini" bindtap="addBookshelf">加入书架</button>
+      <button style="float: left;" 
+      class="weui-btn mini-btn {{ isBookshelf ? 'disabled': '' }}" 
+      type="default" size="mini" bindtap="addBookshelf" 
+      >{{ isBookshelf ? '已加入书架' : '加入书架' }}</button>
       <button style="float: right;" class="weui-btn mini-btn" 
       type="primary" size="mini" bindtap="startReading">开始阅读</button>
     </view>
@@ -47,7 +50,7 @@
   <view class="footer">
     <view class="line-plus flex">
       <view class="text-left">你可能感兴趣</view>
-      <view class="text-right text-active" bindtap="clearHistroy">更多</view>
+      <view class="text-right text-active" bindtap="jumpList">更多</view>
     </view>
     <view class="text-alige">
       <block wx:for="{{ similarList }}" wx:for-item="item" wx:key="item._id">

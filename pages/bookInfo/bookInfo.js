@@ -17,6 +17,7 @@ Page({
   data: {
     loading: false,
     isHide: false,
+    isBookshelf: false,
     bookInfo: null,
     similarList: similarList,
     imageUrl: app.globalData.imageUrl
@@ -27,13 +28,16 @@ Page({
       mask: true,
       success: () => {
         api._get(`/book/${option.id}`).then(res => {
-          console.log(res)
+          let bool = this.isNotBookshelf(option.id)
           let time = new Date(res.updated).getTime()
           let transWordCount = util.tranNumber(res.wordCount)
           let formatPassTime = util.formatPassTime(time)
           res.transWordCount = transWordCount
           res.formatPassTime = formatPassTime
-          this.setData({bookInfo: res})
+          wx.setNavigationBarTitle({
+            title: res.title,
+          })
+          this.setData({ bookInfo: res, isBookshelf: bool})
           return api._get(`${baseUrl}/recommend/${option.id}`)
         }).then(res => {
           if (res.ok) {
@@ -43,29 +47,56 @@ Page({
               similarList.push(res.books[index])
             }
             app.globalData.similarList = res.books
+            app.globalData.similarId = option.id
             this.setData({ similarList: similarList })
           }
         })
       }
     })
   },
+  isNotBookshelf(id) {
+    let bool = false
+    let bookshelf = util.getStorage("bookshelf")
+    bookshelf.some((item, index) => {
+      if (item._id === id) {
+        bool = true
+        return true
+      }
+    })
+    console.log(bool)
+    return bool
+  },
   addBookshelf() {
-
+    let current = null
+    let isBookshelf = this.data.isBookshelf
+    let bookshelf = util.getStorage("bookshelf")
+    let id = this.data.bookInfo.id
+    if (isBookshelf) {
+      bookshelf.some((item, index) => {
+        if (item.id === id) {
+          bookshelf.splice(index, 1)
+          return true
+        }
+      })
+      isBookshelf = false
+    } else {
+      let { cover, title, formatPassTime, lastChapter, _id } = this.data.bookInfo
+      bookshelf.unshift({ _id, cover, lastChapter, formatPassTime, title })
+      isBookshelf = true
+    }
+    util.setStorage("bookshelf", bookshelf)
+    this.setData({ isBookshelf })
   },
   startReading () {
 
   },
   previewAll() {
-    // console.log(this.data.isHide)
     this.setData({ isHide: !this.data.isHide })
-    // console.log(this.data.isHide)
   },
   jumpList(event) {
-    let { name } = event.currentTarget.dataset
-    let current = tabArray.find(item => item.active)
-    let gender = current.value
-    console.log(gender)
-    let url = `/pages/list/list?major=${name}&gender=${gender}`
-    wx.navigateTo({ url: url })
+    if (this.data.bookInfo && this.data.bookInfo._id) {
+      let url = `/pages/list/list`
+      wx.navigateTo({ url: url })
+    }
   }
 })
