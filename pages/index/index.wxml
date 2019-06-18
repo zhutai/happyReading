@@ -21,7 +21,7 @@
               <view class="weui-media-box__title">
                 <text>{{ item.title }}</text>
               </view>
-              <view class="weui-media-box__desc">
+              <view class="weui-media-box__desc nowrap">
                 <text> {{ item.formatPassTime }}更新  </text>
                 <text> {{ item.lastChapter }} </text>
               </view>

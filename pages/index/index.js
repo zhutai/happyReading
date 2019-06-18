@@ -96,9 +96,14 @@ Page({
     } else {
       this.setXmove(int, 0)
       let i = bookshelf.findIndex(item => !item.order)
+      console.log(i)
       bookshelf.splice(int, 1)
       current.order = 0
-      bookshelf.splice(i-1, 0, current)
+      if (i > 0 ) {
+        bookshelf.splice(i - 1, 0, current)
+      } else {
+        bookshelf.push(current)
+      }
       setTimeout(() => {
         this.setData({ bookshelf: bookshelf })
         util.setStorage("bookshelf", bookshelf)
@@ -108,7 +113,7 @@ Page({
   handleDelete(e) {
     let bookshelf = this.data.bookshelf
     let id = e.currentTarget.dataset.id
-    let index = bookshelf.findIndex(item => item.id = id)
+    let index = bookshelf.findIndex(item => item._id === id)
     if (bookshelf[index]) {
       this.setXmove(index, 0)
       bookshelf.splice(index, 1)
@@ -166,9 +171,6 @@ Page({
     } else if (e.detail.source === 'out-of-bounds' && e.detail.x === 0) {
       this.hideDeleteButton(e)
     }
-  },
-  longpress () {
-    console.log(123)
   },
   /**
    * 设置movable-view位移
