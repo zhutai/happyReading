@@ -68,5 +68,5 @@
 
 .book-list .book-item .topping-btn {
   right: 150rpx;
-  background: #3399cc;
+  background: #bbb;
 }

@@ -8,6 +8,8 @@
         <movable-view out-of-bounds="true" direction="horizontal" x="{{ item.xmove || 0 }}"
           inertia="true"
           data-index="{{index}}"
+          data-id="{{ item._id }}"
+          bindtap="pressTap"
           bindtouchstart="handleTouchStart"
           bindtouchend="handleTouchEnd"
           bindchange="handleMovableChange">

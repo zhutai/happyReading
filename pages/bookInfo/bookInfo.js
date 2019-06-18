@@ -63,7 +63,6 @@ Page({
         return true
       }
     })
-    console.log(bool)
     return bool
   },
   addBookshelf() {
@@ -75,6 +74,11 @@ Page({
       bookshelf.some((item, index) => {
         if (item.id === id) {
           bookshelf.splice(index, 1)
+          wx.showToast({
+            title: '移出成功',
+            icon: 'success',
+            duration: 2000
+          });
           return true
         }
       })
@@ -83,6 +87,11 @@ Page({
       let { cover, title, formatPassTime, lastChapter, _id } = this.data.bookInfo
       bookshelf.unshift({ _id, cover, lastChapter, formatPassTime, title })
       isBookshelf = true
+      wx.showToast({
+        title: '添加成功',
+        icon: 'success',
+        duration: 2000
+      });
     }
     util.setStorage("bookshelf", bookshelf)
     this.setData({ isBookshelf })

@@ -9,22 +9,13 @@ Page({
     bookshelf: [],
     userInfo: {},
     loading: false,
+    touchStart: 0,
+    touchEnd: 0,
     hasUserInfo: false,
     imageUrl: app.globalData.imageUrl,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   //事件处理函数
-  // bindViewTap: function() {
-  //   wx.navigateTo({
-  //     url: '../logs/logs'
-  //   })
-  // },
-  // modalCotorl: function() {
-  //   wx.showModal({
-  //     title: '标题',
-  //     content: '内容',
-  //   })
-  // },
   onLoad: function () {
     if (app.globalData.userInfo) {
       this.setData({
@@ -69,7 +60,6 @@ Page({
     }, 1500);
   },
   getUserInfo: function(e) {
-    console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
@@ -133,11 +123,28 @@ Page({
    */
   handleTouchStart(e) {
     this.startX = e.touches[0].pageX
+    this.setData({
+      touchStart: e.timeStamp
+    })
+  },
+  pressTap (e) {
+    let id = e.currentTarget.dataset.id
+    let touchTime = this.data.touchEnd - this.data.touchStart;
+    if (touchTime > 500) { //自定义长按时长，单位为ms
+      wx.navigateTo({
+        url: `/pages/bookInfo/bookInfo?id=${id}`,
+      })
+    } else {
+      console.log('点击')
+    }
   },
   /**
    * 处理touchend事件
    */
   handleTouchEnd(e) {
+    this.setData({
+      touchEnd: e.timeStamp
+    })
     if (e.changedTouches[0].pageX < this.startX && e.changedTouches[0].pageX - this.startX <= -30) {
       this.showDeleteButton(e)
     } else if (e.changedTouches[0].pageX > this.startX && e.changedTouches[0].pageX - this.startX < 30) {
@@ -160,11 +167,17 @@ Page({
       this.hideDeleteButton(e)
     }
   },
+  longpress () {
+    console.log(123)
+  },
   /**
    * 设置movable-view位移
    */
   setXmove: function (index, xmove) {
     let bookshelf = this.data.bookshelf
+    bookshelf.forEach(item => {
+      item.xmove = 0
+    })
     bookshelf[index].xmove = xmove
     this.setData({
       bookshelf: bookshelf

@@ -32,14 +32,16 @@ page {
   background-color: #f8f7f5;
 }
 
-/* .class-item:active {
-  background-color: #fff0ed;
-} */
-
 .item-text {
   flex: 1;
 }
 
-.item-image {
-  flex-basis: 40%;
+.item-row {
+  height: 60rpx;
+  line-height: 70rpx;
 }
+
+.item-image {
+  flex-basis: 35%;
+}
+
