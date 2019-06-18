@@ -17,7 +17,8 @@
   bindscrolltolower="scrollBottom"  >
     <view class="weui-cells weui-cells_after-title" wx:if="{{ bookList.length }}">
       <block wx:for="{{ bookList }}" wx:for-item="item" wx:key="item._id">
-        <navigator class="weui-cell active" url="/pages/bookInfo/bookInfo?id={{ item._id }}">
+        <navigator class="weui-cell" hover-class="active"
+        url="/pages/bookInfo/bookInfo?id={{ item._id }}">
           <view class="weui-cell__hd">
             <image class="icon-image" lazy-load src="{{ imageUrl + item.cover }}"></image>
           </view>

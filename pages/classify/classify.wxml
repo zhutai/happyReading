@@ -14,10 +14,11 @@
     <view class="clearFix classlist">
       <block wx:for="{{ currentList }}" wx:for-item="item" wx:key="item.bookCount">
         <view class="class-float">
-          <view class="class-item active" data-name="{{ item.name }}" bindtap="jumpList">
-            <view class='item-text'>
-              <view><text class='text-middle'>{{ item.name }}</text></view>
-              <view><text class='text-min'>共{{ item.bookCount }}本</text></view>
+          <view class="class-item" hover-class="active"
+          data-name="{{ item.name }}" bindtap="jumpList">
+            <view class="item-text">
+              <view><text class="text-middle">{{ item.name }}</text></view>
+              <view><text class="text-min">共{{ item.bookCount }}本</text></view>
             </view>
             <view class='item-image'>
               <image class='image' lazy-load="true"

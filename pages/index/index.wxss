@@ -1,21 +1,72 @@
 /**index.wxss**/
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+
+.not-data {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -70%);
+  width:100%;
+  text-align:center;
 }
 
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+.not-data .iconfont {
+  font-size:120rpx;
+  text-align:center;
+  font-weight:100;
 }
 
-.userinfo-nickname {
-  color: #aaa;
+.weui-media-box__hd {
+  width:80rpx;
+  height:90rpx;
+  margin-right: 20rpx;
+  line-height:90rpx;
+  text-align:center;
 }
 
-.usermotto {
-  margin-top: 200px;
+.weui-media-box__title {
+  height:60rpx;
+}
+
+.book-list .book-item {
+  position: relative;
+  width: 100vw;
+  border-bottom: 2rpx solid #E9E9E9;
+  box-sizing: border-box;
+  background: #fff;
+  z-index: 999;
+}
+
+.book-list .book-item movable-area {
+  height: 150rpx;
+  width: calc(100vw - 300rpx);
+}
+
+.book-list .book-item movable-view {
+  height: 150rpx;
+  width: 100vw;
+  background: #fff;
+  z-index: 999;
+}
+
+.book-list .book-item .btn {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 150rpx;
+  z-index: 1;
+  font-size: 30rpx;
+  color: #FFFFFF;
+  line-height: 150rpx;
+  text-align: center;
+  border-top: 1rpx solid #fff;
+  border-bottom: 1rpx solid #fff;
+}
+.book-list .book-item .delete-btn {
+  right: 0; 
+  background: #E66671;
+}
+
+.book-list .book-item .topping-btn {
+  right: 150rpx;
+  background: #3399cc;
 }

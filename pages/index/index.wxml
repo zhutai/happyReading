@@ -1,8 +1,45 @@
 <!--index.wxml-->
-<view>
-  <scroll-view >
-    <block wx:for="{{ 20 }}" wx:for-item="item" wx:key="item">
-      <view><text class="user-motto" bindtap='modalCotorl'>{{motto}}</text></view>
-    </block>
-  </scroll-view>
+<view id="bookshelf" hidden="{{ !loading }}">
+  <view class="book-list" wx:if="{{ bookshelf.length }}">
+    <scroll-view>
+      <view class="book-item" wx:for="{{ bookshelf }}" 
+      wx:for-item="item" wx:for-index="index" wx:key="item._id">
+      <movable-area>
+        <movable-view out-of-bounds="true" direction="horizontal" x="{{ item.xmove || 0 }}"
+          inertia="true"
+          data-index="{{index}}"
+          bindtouchstart="handleTouchStart"
+          bindtouchend="handleTouchEnd"
+          bindchange="handleMovableChange">
+          <view class="weui-media-box weui-media-box_appmsg" hover-class="active">
+            <view class="weui-media-box__hd">
+              <image class="weui-media-box__thumb" src="{{ imageUrl + item.cover }}" />
+            </view>
+            <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+              <view class="weui-media-box__title">
+                <text>{{ item.title }}</text>
+              </view>
+              <view class="weui-media-box__desc">
+                <text> {{ item.formatPassTime }}更新  </text>
+                <text> {{ item.lastChapter }} </text>
+              </view>
+            </view>
+          </view>
+        </movable-view>
+      </movable-area>
+      <view class="btn delete-btn" data-id="{{item._id}}" 
+      bindtap="handleDelete">删除</view>
+      <view class="btn topping-btn" data-id="{{item._id}}" 
+      bindtap="handleTopping">{{ item.order ? '取消置顶' : '置顶' }}</view>
+      </view>
+    </scroll-view>
+  </view>
+  <view class="not-data" wx:else>
+    <view class="iconfont icon-bookshelf"></view>
+    <text class="text-small">当前书架没有书籍，去找书看看吧</text>
+    <view>
+      <button style="margin-top: 30rpx;" class="mini-btn" 
+      type="default" size="mini" bindtap="jumpRank">去看看</button>
+    </view>
+  </view>
 </view>
