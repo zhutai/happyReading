@@ -1,0 +1,120 @@
+/* pages/read/read.wxss */
+.center-click {
+  width: 50vw;
+  height: 30vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* z-index: -1; */
+  transform: translate(-50%, -50%);
+  background: #ddd;
+}
+
+.content {
+  width: 100vw;
+  height: 100vh;
+  background: #bbb;
+}
+
+.pupContentMask {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+}
+
+.pupContent {
+  width: 100%;
+  background: pink;
+  position: absolute;
+  /* box-shadow: 0 0 10rpx #ddd; */
+  height: 0;
+  z-index: 999;
+}
+
+.upWard {
+  bottom: 0;
+}
+
+.downWard {
+  top:0;
+}
+
+/* 弹出或关闭动画来动态设置内容高度 */
+
+@keyframes slideBgtUp {
+  from {
+    background: transparent;
+  }
+
+  to {
+    background: rgba(0, 0, 0, 0.6);
+  }
+}
+
+@keyframes slideBgDown {
+  from {
+    background: rgba(0, 0, 0, 0.6);
+  }
+
+  to {
+    background: transparent;
+  }
+}
+
+/* 显示或关闭内容时动画 */
+
+.openMask {
+  animation: slideBgtUp 0.3s ease-in both;
+  /* animation-fill-mode: both 动画将会执行 forwards 和 backwards 执行的动作。 */
+}
+
+.closeMask {
+  animation: slideBgDown 0.3s ease-in both;
+  /* animation-fill-mode: both 动画将会执行 forwards 和 backwards 执行的动作。 */
+}
+
+/* 设置显示内容 */
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+/* 弹出或关闭动画来动态设置内容高度 */
+
+@keyframes slideContentUp {
+  from {
+    height: 0;
+  }
+
+  to {
+    height: 200rpx;
+  }
+}
+
+@keyframes slideContentDown {
+  from {
+    height: 200rpx;
+  }
+
+  to {
+    height: 0;
+  }
+}
+
+/* 显示或关闭内容时动画 */
+
+.open {
+  animation: slideContentUp 0.15s ease-in both;
+  /* animation-fill-mode: both 动画将会执行 forwards 和 backwards 执行的动作。 */
+}
+
+.close {
+  animation: slideContentDown 0.15s ease-in both;
+  /* animation-fill-mode: both 动画将会执行 forwards 和 backwards 执行的动作。 */
+}
+

@@ -57,6 +57,17 @@ const getStorage = (key) => {
   return data
 }
 
+const getTouchType = (endX, endY, startX, startY) => {
+  let TouchSpace = 50;
+  let turn = "";
+  if (endX - startX > TouchSpace && Math.abs(endY - startY) < TouchSpace) {      //右滑
+    turn = "right";
+  } else if (endX - startX < -TouchSpace && Math.abs(endY - startY) < TouchSpace) {   //左滑
+    turn = "left";
+  }
+  return turn;
+}
+
 const tranNumber = (num) => {
   let numStr = num.toString()
   let index = 0
@@ -101,5 +112,6 @@ module.exports = {
   tranNumber: tranNumber,
   formatPassTime: formatPassTime,
   getUrlKey: getUrlKey,
-  formatTime: formatTime
+  formatTime: formatTime,
+  getTouchType: getTouchType
 }

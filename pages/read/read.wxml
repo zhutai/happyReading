@@ -1,0 +1,17 @@
+<!--pages/read/read.wxml-->
+<view>
+  <view class='content' bindtap='clickContent'></view>
+  <view class='center-click' catchtap='clickPup'></view>
+  <!-- <button >点击底部动画弹窗</button> -->
+  <!-- 底部弹窗动画的内容 -->
+  <view class='pupContent downWard {{click? "show": "hide"}} {{option? "open": "close"}}' hover-stop-propagation='true'>
+    <view class='pupContent-topa'>测试一下</view>
+  </view>
+  <!-- 底部弹窗动画的内容 -->
+  <view class='pupContent upWard {{click? "show": "hide"}} {{option? "open": "close"}}' hover-stop-propagation='true'>
+    <view class='pupContent-topa'>测试一下</view>
+  </view>
+  <!-- 固定的背景 -->
+  <view class='pupContentMask {{click?"show":"hide"}} {{option?"openMask":"closeMask"}}' catchtap='clickPup'>
+  </view>
+</view>
